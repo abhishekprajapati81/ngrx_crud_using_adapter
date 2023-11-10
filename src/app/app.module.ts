@@ -10,10 +10,12 @@ import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './state/counter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomeCounterInputComponent } from './counter/custome-counter-input/custome-counter-input.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostsListComponent } from './posts/posts-list/posts-list.component';
 import { postReducer } from './postState/post.reducer';
 import { appReducer } from './store/app.state';
+import { AddPostComponent } from './posts/add-post/add-post.component';
+import { EditPostComponent } from './posts/edit-post/edit-post.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,14 @@ import { appReducer } from './store/app.state';
     CounterOutputComponent,
     CounterbuttonComponent,
     CustomeCounterInputComponent,
-    PostsListComponent
+    PostsListComponent,
+    AddPostComponent,
+    EditPostComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({

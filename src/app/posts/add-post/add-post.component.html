@@ -1,0 +1,16 @@
+<div>
+    <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+        <div>
+            <label>Title</label>
+            <input type="text" placeholder="Title" formControlName="title">
+        </div>
+        <div>
+            <label>description</label>
+            <input type="text" placeholder="description" formControlName="description">
+        </div>
+        <br>
+        <div>
+            <button type="submit" [disabled]="!postForm.valid">Add Post</button>
+        </div>
+    </form>
+</div>

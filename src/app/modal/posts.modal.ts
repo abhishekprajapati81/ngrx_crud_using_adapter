@@ -1,5 +1,5 @@
-export interface post{
-    id:number
-    title:string
+export interface Post{
+    id :number | undefined
+    title:string,
     desc:string
 }

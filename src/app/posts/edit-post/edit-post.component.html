@@ -1,18 +1,22 @@
-<h3>Update Data</h3>
-<br>
+
 <div>
-    <form >
-        <div>
-            <label>Title</label>
-            <input type="text" placeholder="Title" >
-        </div>
-        <div>
-            <label>description</label>
-            <input type="text" placeholder="description">
-        </div>
-        <br>
-        <div>
-            <button type="submit">Update Post</button>
-        </div>
-    </form>
+  <h1>Update Form</h1>
+  <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
+    <div>
+      <label>Title</label>
+      <input type="text" placeholder="Title" formControlName="title" />
+    </div>
+    <div>
+      <label>description</label>
+      <input
+        type="text"
+        placeholder="description"
+        formControlName="description"
+      />
+    </div>
+    <br />
+    <div>
+      <button type="submit">Update</button>
+    </div>
+  </form>
 </div>

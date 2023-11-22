@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { customeIncremenet } from 'src/app/state/counter.action';
 import { CounterType } from 'src/app/state/counter.state';
-import { appState } from 'src/app/store/app.state';
+import { AppState } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-custome-counter-input',
@@ -10,7 +10,7 @@ import { appState } from 'src/app/store/app.state';
 })
 export class CustomeCounterInputComponent {
 
-  constructor(private store: Store<appState>) { }
+  constructor(private store: Store<AppState>) { }
   value!: number
 
   onclick() {

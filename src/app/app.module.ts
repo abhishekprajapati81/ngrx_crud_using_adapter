@@ -7,15 +7,18 @@ import { CounterComponent } from './counter/counter/counter.component';
 import { CounterOutputComponent } from './counter/counter-output/counter-output.component';
 import { CounterbuttonComponent } from './counter/counterbutton/counterbutton.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './state/counter.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CustomeCounterInputComponent } from './counter/custome-counter-input/custome-counter-input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostsListComponent } from './posts/posts-list/posts-list.component';
-import { postReducer } from './postState/post.reducer';
+import { PostsListComponent } from './posts/posts-list/posts-list.component'; 
 import { appReducer } from './store/app.state';
 import { AddPostComponent } from './posts/add-post/add-post.component';
 import { EditPostComponent } from './posts/edit-post/edit-post.component';
+import { EffectsModule } from '@ngrx/effects';
+// httpclient
+import { HttpClientModule } from '@angular/common/http'
+import { counterReducer } from './state/counter.reducer';
+import { postReducer } from './postState/post.reducer';
 
 @NgModule({
   declarations: [
@@ -26,20 +29,23 @@ import { EditPostComponent } from './posts/edit-post/edit-post.component';
     CustomeCounterInputComponent,
     PostsListComponent,
     AddPostComponent,
-    EditPostComponent
+    EditPostComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    EffectsModule.forRoot([]),
     StoreModule.forRoot(appReducer),
     StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: false, // Restrict extension to log-only mode
+      maxAge: 25,
+      logOnly: false,
     }),
   ],
   providers: [],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }

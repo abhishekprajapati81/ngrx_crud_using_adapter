@@ -1,15 +1,12 @@
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
 import { Post } from '../modal/posts.modal';
 
-export interface PostsState {
-  posts: Post[];
+export interface PostsState extends EntityState<Post> {
   editableValue: Post | undefined;
 }
 
-export const initialStatePost: PostsState = {
-  posts: [
-    { id: 1, title: 'Web Developer', desc: 'Sample description 1' },
-    { id: 2, title: 'Software Engineer', desc: 'Sample description 2' },
-    { id: 3, title: 'Data Scientist', desc: 'Sample description 3' },
-  ],
-  editableValue : undefined
-};
+export const postAdapter = createEntityAdapter<Post>();
+
+export const initialStatePost: PostsState = postAdapter.getInitialState({
+  editableValue: undefined,
+});

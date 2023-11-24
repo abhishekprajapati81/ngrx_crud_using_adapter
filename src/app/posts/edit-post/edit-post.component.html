@@ -1,22 +1,21 @@
-
-<div>
+<!-- post.component.html -->
+<!-- <div *ngIf="updatePost$ | async as post"> -->
   <h1>Update Form</h1>
   <form [formGroup]="updateForm" (ngSubmit)="onUpdate()">
     <div>
       <label>Title</label>
-      <input type="text" placeholder="Title" formControlName="title" />
+      <input type="text" placeholder="Title" formControlName="title"  />
+      <span *ngIf="!updateForm.get('title')?.value">Not valid input</span>
     </div>
     <div>
-      <label>description</label>
-      <input
-        type="text"
-        placeholder="description"
-        formControlName="description"
-      />
+      <label>Description</label>
+      <input type="text" placeholder="Description" formControlName="desc" />
+      <span *ngIf="!updateForm.get('desc')?.value">Not valid input</span>
     </div>
     <br />
     <div>
-      <button type="submit">Update</button>
+      <button type="submit" [disabled]="!this.updateForm.valid">Update</button>
     </div>
   </form>
-</div>
+<!-- </div> -->
+

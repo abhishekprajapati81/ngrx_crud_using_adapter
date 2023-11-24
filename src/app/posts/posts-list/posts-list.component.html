@@ -25,19 +25,21 @@
       <td>{{ post.id }}</td>
       <td>{{ post.title }}</td>
       <td>{{ post.desc }}</td>
-     
+
       <td>
-        <button
-          class="btn"
-          [routerLink]="['edit', post.id]"
-          (click)="routeToPost(post)"
-        >
+        <button class="btn" [routerLink]="['edit', post.id]"
+          (click)="routeToPost(post)">
           Update
         </button>
       </td>
       <td>
-        <button class="btn1" (click)="onDeletePost(post.id)">Delete</button>
+        <button class="btn1" (click)="onDeletePost(post.id ?? 0)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
 </table>
+
+
+<!-- <button class="btn1" [routerLink]="['edit', post.id]" (click)="onDeletePost(post.id ?? 0)"> -->

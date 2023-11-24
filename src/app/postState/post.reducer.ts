@@ -1,50 +1,47 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { initialStatePost, PostsState } from './post.state';
-import { addPost, deletePost, readpost, updateAllPost } from './post.action';
+import { initialStatePost, postAdapter, PostsState } from './post.state';
+import { addPost, deletePost, editPost, updatePost } from './post.action';
 import { Post } from '../modal/posts.modal';
+import { state } from '@angular/animations';
 
 const _postsReducer = createReducer<PostsState>(
   initialStatePost,
   on(addPost, (state, action) => {
     // const nextId =
     //   state.posts.length > 0
-    //     ? Math.max(...state.posts.map((post) => post.id)) + 1
-    //     : 1;
-    let post = { ...action.post };
-    return {
-      ...state,
-      posts: [...state.posts, post],
+    //     ? Math.max(...state.posts.map((post) => post.id ?? 0)) + 1: 1;
+    // const post = {
+    //   ...action.post,
+    //   id: nextId, // Assign the calculated nextId to the 'id' property
+    // };
+    // return {
+    //   ...state,
+    //   posts: [...state.posts, post],
+    // };
+
+    const ids = state.ids as number[];
+    const maxId = ids.length > 0 ? Math.max(...ids) : 0;
+
+    const postWithId = {
+      ...action.post,
+      id: maxId + 1,
     };
+    return postAdapter.addOne(postWithId, state);
+  }),
+  on(deletePost, (state, action) => {
+    return postAdapter.removeOne(action.id, { ...state });
   }),
 
-  on(deletePost, (state, action) => {
-    const deletePosts = state.posts.filter((post) => post.id !== action.id);
+  on(editPost, (state, action) => {
     return {
       ...state,
-      posts: deletePosts,
+      editableValue: action.post,
     };
   }),
-  on(readpost, (state, action) => {
-    const getCurrentValue = state.posts.filter((post) => post === action.post);
-    console.log('getcurrentid', getCurrentValue);
-    return {
-      ...state,
-      editableValue: getCurrentValue[0],
-    };
-  }),
-  on(updateAllPost, (state, action) => {
-    const removeOldpost = state.posts.map((post) => {
-      if (post.id === action.id) {
-        post = action.post;
-        
-      }
-      return post;
-    });
-    console.log(removeOldpost ,'olddata####');
-    return {
-      ...state,
-      posts: removeOldpost,
-    };
+  on(updatePost, (state, { id, post }) => {
+    console.log(post, 'update post');
+
+    return postAdapter.updateOne({ id, changes: post }, state);
   })
 );
 

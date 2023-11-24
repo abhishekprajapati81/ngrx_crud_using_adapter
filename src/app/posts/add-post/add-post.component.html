@@ -3,10 +3,12 @@
         <div>
             <label>Title</label>
             <input type="text" placeholder="Title" formControlName="title">
+            <span *ngIf="!postForm.get('title')?.value">Not valid input</span>
         </div>
         <div>
             <label>description</label>
             <input type="text" placeholder="description" formControlName="description">
+            <span>Not valid input</span>
         </div>
         <br>
         <div>

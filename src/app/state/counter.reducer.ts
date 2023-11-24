@@ -31,9 +31,7 @@ const _counterReducer = createReducer<CounterType>(initialState,
     })
 )
 
-export function counterReducer(state: any, action: any) {
-    console.log(state);
-    
+export function counterReducer(state: any, action: any) {    
     return _counterReducer(state, action)
 
 }
